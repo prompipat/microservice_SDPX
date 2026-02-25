@@ -42,6 +42,7 @@ pipeline {
         stage('Robot Framework Test - mul10') {
             steps {
                 sh '''
+                rm -rf test_robot_SDPX
                     git clone https://github.com/prompipat/test_robot_SDPX.git
 
                     robot --variable BASE_URL:http://192.168.49.2:30080 \
