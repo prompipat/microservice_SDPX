@@ -42,10 +42,9 @@ pipeline {
         stage('Robot Framework Test - mul10') {
             steps {
                 sh '''
-                    MINIKUBE_IP=$(minikube ip)
-                    robot --variable BASE_URL:http://${MINIKUBE_IP}:30080 \
+                    robot --variable BASE_URL:http://192.168.49.2:30080 \
                           --outputdir robot-results \
-                          /tests/test_mul10.robot
+                          ../test_robot_SDPX/tests/test_mul10.robot
                 '''
             }
             post {
