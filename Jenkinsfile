@@ -44,7 +44,7 @@ pipeline {
                 sh '''
                     robot --variable BASE_URL:http://192.168.49.2:30080 \
                           --outputdir robot-results \
-                          ../test_robot_SDPX/tests/test_mul10.robot
+                          ../home/g66010533/test_robot_SDPX/tests/test_mul10.robot
                 '''
             }
             post {
