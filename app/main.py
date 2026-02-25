@@ -8,4 +8,4 @@ def mul10(num: float):
 
 @app.get("/getcode")
 def get_code():
-    return {"code": "Hello, CE!"}
+    return {"code": "Helloooo, CEEEEEEE!"}
