@@ -39,24 +39,6 @@ pipeline {
             }
         }
 
-        stage('Robot Framework Test - mul10') {
-            steps {
-                sh '''
-                rm -rf test_robot_SDPX
-                    git clone https://github.com/prompipat/test_robot_SDPX.git
-
-                    robot --variable BASE_URL:http://192.168.49.2:30080 \
-                          --outputdir robot-results \
-                          test_robot_SDPX/tests/test_mul10.robot
-                '''
-            }
-            post {
-                always {
-                    archiveArtifacts artifacts: 'robot-results/*', allowEmptyArchive: true
-                }
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 sh '''
@@ -95,6 +77,24 @@ pipeline {
                     kubectl rollout status deployment/api-deployment \
                         -n ${K8S_NAMESPACE}
                 '''
+            }
+        }
+
+        stage('Robot Framework Test - mul10') {
+            steps {
+                sh '''
+                rm -rf test_robot_SDPX
+                    git clone https://github.com/prompipat/test_robot_SDPX.git
+
+                    robot --variable BASE_URL:http://192.168.49.2:30080 \
+                          --outputdir robot-results \
+                          test_robot_SDPX/tests/test_mul10.robot
+                '''
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'robot-results/*', allowEmptyArchive: true
+                }
             }
         }
     }
